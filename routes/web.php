@@ -13,14 +13,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/people/index',function(){
-    return view('welcome');
-});
-//Route::get('/people/index','PersonController@index');
+
+Route::get('/people/index','PersonController@index');
 
 Route::post('/people','PersonController@store');
 Route::get('/people/create','PersonController@create');

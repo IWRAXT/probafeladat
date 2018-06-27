@@ -20,10 +20,10 @@ class CreatePeopleTable extends Migration
             $table->string('address');
             $table->string('web');
             $table->string('phone');
-            $table->string('foto');
+            $table->string('foto')->default('default');
 
             $table->integer('principal_id')->unsigned()->default(0);
-            $table->integer('subaltern_id')->unsigned()->default(0);
+           // $table->integer('subaltern_id')->unsigned()->default(0);
 
             $table->timestamps();
         });
