@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
+    protected $fillable=[
+        'last_name',
+        'first_name',
+        'address',
+        'web',
+        'phone',
+        'foto',
+    ];
+
     public function principal(){
         return $this->hasOne(Person::class,'id','principal_id');
 
@@ -16,7 +25,7 @@ class Person extends Model
     public function repliesAll(){
 
     }
+
+
 }
 
-/*$people=App\Person::find(1)->principal->last_name;
-=> "Nagy"*/

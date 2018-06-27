@@ -23,3 +23,7 @@ Route::get('/people/index','PersonController@index');
 
 Route::post('/people','PersonController@store');
 Route::get('/people/create','PersonController@create');
+
+Route::get('/people/{id}/edit','PersonController@edit');
+Route::post('/people/{id}/update','PersonController@update');
+Route::post('/people/{id}','PersonController@destroy');

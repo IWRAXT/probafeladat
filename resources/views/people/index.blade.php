@@ -10,10 +10,11 @@
     <div class="container">
 
         @foreach($people as $person)
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <div class="col-md-6">
-                    <div class="card flex-md-row mb-4  h-md-250">
+        <ul class="list-group list-inline">
+            <li class="list-group-item list-group-flush">
+                <div >
+                    <div class="card flex-md-row mb-20  h-md-250">
+                        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/212110-200.png" alt="profile" style="width:100px;height:100px">
                         <ul>
 
                             <h5> {{$person->last_name}} {{$person->first_name}} </h5>
@@ -27,7 +28,12 @@
 
 
                         </ul>
-                        <img class="card-img-left flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap" style="width:100px;height:100px">
+                        <a href="/people/{{$person->id}}/edit" class="btn btn-default">Edit</a>
+                        <form method="post" action="/people/{{$person->id}}">
+                            {{csrf_field()}}
+                            <button  class="btn btn-danger">Delete</button>
+                        </form>
+
                     </div>
                 </div>
             </li>

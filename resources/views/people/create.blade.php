@@ -8,7 +8,7 @@
         {{csrf_field()}}
 
         <div class="form-group">
-            <label for="account_number">Vezeték név</label>
+            <label for="last_name">Vezeték név</label>
             <input type="text" class="form-control" id="last_name" name="last_name">
         </div>
         <div class="form-group">
@@ -48,7 +48,7 @@
             <button type="submit" class="btn btn-primary">Rögzít</button>
         </div>
 
-
+        @include ('layouts.errors')
     </form>
 
 

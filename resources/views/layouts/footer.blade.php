@@ -1,6 +1,6 @@
 <footer class="text-muted">
     <div class="footer">
-        <p><?php echo(Date("Y-m-d")) ?></p>
+        <h5><?php echo(Date("Y-m-d")) ?></h5>
     </div>
     </div>
 </footer>
