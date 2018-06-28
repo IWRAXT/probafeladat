@@ -17,7 +17,6 @@ class PersonController extends Controller
 
     public function create(Request $request)
     {
-       // Person::create([request()]);
         return view('people.create');
     }
 
@@ -56,27 +55,23 @@ class PersonController extends Controller
 
         $person=Person::find($id);
         $person->update($request->all());
-
-//        $person->last_name=request('last_name');
-//        $person->first_name=request('first_name');
-//        $person->address=request('address');
-//        $person->web=request('web');
-//        $person->phone=request('phone');
-//        $person->foto=request('foto');
-
-
-
-//        $person->save();
-
         return redirect('/people/index')->with('success','Person Updated');
     }
 
 
     public function destroy($id)
     {
-        Person::find($id)->delete();
+
+        //if(count(Person::find($id)->subalterns) === 0){
+        //if ()
+            $person=Person::find($id)->delete();
+          //  return redirect('/people/index')->with('success','Person cant be deleted');
+       // }else {
+            return redirect('/people/index')->with('success','Person Deleted');
+       // }
 
 
-        return redirect('/people/index')->with('success','Person Deleted');
+
+
     }
 }

@@ -22,10 +22,6 @@ class Person extends Model
     public function subalterns(){
         return $this->hasMany(Person::class, 'principal_id','id');
     }
-    public function repliesAll(){
-
-    }
-
 
 }
 

@@ -28,11 +28,17 @@
 
 
                         </ul>
-                        <a href="/people/{{$person->id}}/edit" class="btn btn-default">Edit</a>
-                        <form method="post" action="/people/{{$person->id}}">
-                            {{csrf_field()}}
-                            <button  class="btn btn-danger">Delete</button>
-                        </form>
+                        <div class="container">
+                            <form method="POST" action="/people/{{$person->id}}">
+                                {{csrf_field()}}
+                                <button  class="btn btn-danger">Delete</button>
+                            </form>
+                            <a href="/people/{{$person->id}}/edit" class="button">Edit</a>
+                        </div>
+                        {{--{{ Form::open(array('url' => 'people/index' . $person->id, 'class' => 'pull-right')) }}--}}
+                        {{--{{ Form::hidden('_method', 'DELETE') }}--}}
+                        {{--{{ Form::submit('Delete this Person', array('class' => 'btn btn-warning')) }}--}}
+                        {{--{{ Form::close() }}--}}
 
                     </div>
                 </div>
