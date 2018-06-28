@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Person;
 use Illuminate\Http\Request;
+use Collective\Html\FormFacade;
 
 class PersonController extends Controller
 {
@@ -30,6 +31,7 @@ class PersonController extends Controller
         $person->web=request('web');
         $person->phone=request('phone');
         $person->foto=request('foto');
+        $person->principal_id=request('principal_id');
 
         $person->save();
 
@@ -62,13 +64,13 @@ class PersonController extends Controller
     public function destroy($id)
     {
 
-        //if(count(Person::find($id)->subalterns) === 0){
-        //if ()
-            $person=Person::find($id)->delete();
-          //  return redirect('/people/index')->with('success','Person cant be deleted');
-       // }else {
-            return redirect('/people/index')->with('success','Person Deleted');
-       // }
+        if(count(Person::find($id)->subalterns) === 0){
+
+            Person::find($id)->delete();
+            return redirect('/people/index')->with('success','Person deleted');
+        }else {
+            return redirect('/people/index')->with('success','Olyan személy, aki alatt vannak személyek, nem törölhető.');
+        }
 
 
 
