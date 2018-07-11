@@ -25,12 +25,10 @@ class PersonController extends Controller
     public function store()
     {
         $person=new Person();
-        $person->last_name=request('last_name');
-        $person->first_name=request('first_name');
-        $person->address=request('address');
-        $person->web=request('web');
-        $person->phone=request('phone');
-        $person->foto=request('foto');
+        $person->name=request('name');
+
+        $person->email=request('email');
+        $person->born=request('born');
         $person->principal_id=request('principal_id');
 
         $person->save();
@@ -51,19 +49,15 @@ class PersonController extends Controller
         return view('people.edit',compact('person'));
     }
 
-
     public function update(Request $request, $id)
     {
-
         $person=Person::find($id);
         $person->update($request->all());
         return redirect('/people/index')->with('success','Person Updated');
     }
 
-
     public function destroy($id)
     {
-
         if(count(Person::find($id)->subalterns) === 0){
 
             Person::find($id)->delete();
@@ -71,9 +65,6 @@ class PersonController extends Controller
         }else {
             return redirect('/people/index')->with('success','Olyan személy, aki alatt vannak személyek, nem törölhető.');
         }
-
-
-
 
     }
 }

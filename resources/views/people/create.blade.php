@@ -8,33 +8,23 @@
         {{csrf_field()}}
 
         <div class="form-group">
-            <label for="last_name">Vezeték név</label>
-            <input type="text" class="form-control" id="last_name" name="last_name">
+            <label for="name">Név</label>
+            <input type="text" class="form-control" id="name" name="name" >
         </div>
         <div class="form-group">
-            <label for="first_name">Keresztnév</label>
-            <input type="text" class="form-control" id="first_name" name="first_name" >
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" >
         </div>
         <div class="form-group">
-            <label for="address">Lakcím</label>
-            <input type="text" class="form-control" id="address" name="address" >
+            <label for="born">Született</label>
+            <input type="date" class="form-control" id="born" name="born" >
         </div>
-        <div class="form-group">
-            <label for="web">Honlap</label>
-            <input type="text" class="form-control" id="web" name="web" >
-        </div>
-        <div class="form-group">
-            <label for="phone">Telefonszám</label>
-            <input type="text" class="form-control" id="phone" name="phone" >
-        </div>
-        <div class="form-group">
-            <label for="foto">Foto</label>
-            <input type="text" class="form-control" id="foto" name="foto" >
-        </div>
+
         <div class="form-group">
             <label for="exampleFormControlFile1">Profilkép hozzáadás</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" >
         </div>
+
 
         <div class="form-group">
             <label for="principal_id">Felettes</label>

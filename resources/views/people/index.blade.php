@@ -17,12 +17,9 @@
                         <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/212110-200.png" alt="profile" style="width:100px;height:100px">
                         <ul>
 
-                            <h5> {{$person->last_name}} {{$person->first_name}} </h5>
-                            <li> {{$person->address}} </li>
-                            <li> {{$person->web}} </li>
-                            <li> {{$person->phone}}</li>
-                            <li> {{$person->foto}} </li>
-                            <li> {{$person->principal_id}} </li>
+                            <h5> {{$person->name}}</h5>
+                            <li> {{$person->email}} </li>
+                            <li> {{$person->born}} </li>
                             <li> {{$person->created_at}} </li>
                             <li> {{$person->updated_at}} </li>
 
@@ -35,6 +32,11 @@
                             </form>
                             <a href="/people/{{$person->id}}/edit" class="button">Edit</a>
                         </div>
+
+
+                        {{$person->printSubalterns($person->subalterns)}}
+
+
                         {{--{{ Form::open(array('url' => 'people/index' . $person->id, 'class' => 'pull-right')) }}--}}
                         {{--{{ Form::hidden('_method', 'DELETE') }}--}}
                         {{--{{ Form::submit('Delete this Person', array('class' => 'btn btn-warning')) }}--}}
