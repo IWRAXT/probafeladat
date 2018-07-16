@@ -17,7 +17,7 @@
                         <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/212110-200.png" alt="profile" style="width:100px;height:100px">
                         <ul>
 
-                            <h5> {{$person->name}}</h5>
+                            <li> {{$person->name}}</li>
                             <li> {{$person->email}} </li>
                             <li> {{$person->born}} </li>
                             <li> {{$person->created_at}} </li>
@@ -34,7 +34,7 @@
                         </div>
 
 
-                        {{$person->printSubalterns($person->subalterns)}}
+                        {{--{{$person->printSubalterns($person->subalterns)}}--}}
 
 
                         {{--{{ Form::open(array('url' => 'people/index' . $person->id, 'class' => 'pull-right')) }}--}}

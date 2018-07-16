@@ -20,36 +20,32 @@ class Person extends Model
     public function subalterns(){
         return $this->hasMany(Person::class, 'principal_id','id');
     }
-
-    public function printSubalterns($array){
-        $i=0;
-
-            while($i<count($array)){
-                echo $array[$i]->name;
-                $array[$i]->printSubalterns($array[$i]->subalterns);
-                $i++;
-
-            }
-
-
-    }
 //
-//    public function printSubalterns(array $elements, $parentId=0){
+//    public function printSubalterns($array){
+//        $i=0;
 //
-//        $branch = array();
+//            while($i<count($array)){
+//                echo $array[$i]->name;
+//                $array[$i]->printSubalterns($array[$i]->subalterns);
+//                $i++;
 //
-//        foreach ($elements as $element) {
+//            }
 //
-//                $children = printSubalterns($elements, $element['id']);
-//                if ($children) {
-//                    $element['children'] = $children;
-//                }
-//                $branch[] = $element;
-//
-//        }
-//
-//        return $branch;
 //
 //    }
+    public function printSubalterns()
+    {
+        $subalterns = $this->subalterns;
+        $result = [];
+
+        for ($i = 0, $iMax = count($subalterns); $i < $iMax; $i++) {
+            /** @var Person $beosztott */
+            $beosztott = $subalterns[$i];
+
+            $result[$beosztott->name] = $beosztott->printSubalterns();
+        }
+
+        return $result;
+    }
 }
 
