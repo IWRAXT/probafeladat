@@ -1,37 +1,47 @@
-
 @extends ('layouts.master')
 
 @section ('content')
-
-    <div class="container">
-        <h1>Dolgozók adatai</h1>
+    <div id="app">
+        <people></people>
     </div>
+    <script src="{{asset('js/app.js')}}"></script>
 
-    <div class="container">
-
-        @foreach($people as $person)
-        <ul class="list-group list-inline">
-            <li class="list-group-item list-group-flush">
-                <div >
-                    <div class="card flex-md-row mb-20  h-md-250">
-                        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/212110-200.png" alt="profile" style="width:100px;height:100px">
-                        <ul>
-
-                            <li> {{$person->name}}</li>
-                            <li> {{$person->email}} </li>
-                            <li> {{$person->born}} </li>
-                            <li> {{$person->created_at}} </li>
-                            <li> {{$person->updated_at}} </li>
+@endsection
 
 
-                        </ul>
-                        <div class="container">
-                            <form method="POST" action="/people/{{$person->id}}">
-                                {{csrf_field()}}
-                                <button  class="btn btn-danger">Delete</button>
-                            </form>
-                            <a href="/people/{{$person->id}}/edit" class="button">Edit</a>
-                        </div>
+{{--@extends ('layouts.master')--}}
+
+{{--@section ('content')--}}
+
+    {{--<div class="container">--}}
+        {{--<h1>Dolgozók adatai</h1>--}}
+    {{--</div>--}}
+
+    {{--<div class="container">--}}
+
+        {{--@foreach($people as $person)--}}
+        {{--<ul class="list-group list-inline">--}}
+            {{--<li class="list-group-item list-group-flush">--}}
+                {{--<div >--}}
+                    {{--<div class="card flex-md-row mb-20  h-md-250">--}}
+                        {{--<img src="https://d30y9cdsu7xlg0.cloudfront.net/png/212110-200.png" alt="profile" style="width:100px;height:100px">--}}
+                        {{--<ul>--}}
+
+                            {{--<li> {{$person->name}}</li>--}}
+                            {{--<li> {{$person->email}} </li>--}}
+                            {{--<li> {{$person->born}} </li>--}}
+                            {{--<li> {{$person->created_at}} </li>--}}
+                            {{--<li> {{$person->updated_at}} </li>--}}
+
+
+                        {{--</ul>--}}
+                        {{--<div class="container">--}}
+                            {{--<form method="POST" action="/people/{{$person->id}}">--}}
+                                {{--{{csrf_field()}}--}}
+                                {{--<button  class="btn btn-danger">Delete</button>--}}
+                            {{--</form>--}}
+                            {{--<a href="/people/{{$person->id}}/edit" class="button">Edit</a>--}}
+                        {{--</div>--}}
 
 
                         {{--{{$person->printSubalterns($person->subalterns)}}--}}
@@ -42,16 +52,16 @@
                         {{--{{ Form::submit('Delete this Person', array('class' => 'btn btn-warning')) }}--}}
                         {{--{{ Form::close() }}--}}
 
-                    </div>
-                </div>
-            </li>
-        </ul>
-        @endforeach
-    </div>
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</li>--}}
+        {{--</ul>--}}
+        {{--@endforeach--}}
+    {{--</div>--}}
 
 
 
 
 
-@endsection
+{{--@endsection--}}
 
