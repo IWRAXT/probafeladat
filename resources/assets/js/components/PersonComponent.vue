@@ -30,7 +30,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Born</th>
-                        <th width="100">&nbsp;</th>
+                        <!--<th width="100">&nbsp;</th>-->
                     </tr>
                     </thead>
                     <tbody>
@@ -40,17 +40,17 @@
                         <td>{{ person.email }}</td>
                         <td>{{ person.born }}</td>
 
-                        <td>
-                            <router-link :to="{name: 'editPerson', params: {id: person.id}}" class="btn btn-xs btn-default">
-                                Edit
-                            </router-link>
-                            <a href="/people/{id}/edit"
-                               class="btn btn-xs btn-danger"
-                               v-on:click="deleteEntry(person.id, index)">
-                                Delete
-                            </a>
+                        <!--<td>-->
+                            <!--<router-link :to="{name: 'editPerson', params: {id: person.id}}" class="btn btn-xs btn-default">-->
+                                <!--Edit-->
+                            <!--</router-link>-->
+                            <!--<a href="/people/{id}/edit"-->
+                               <!--class="btn btn-xs btn-danger"-->
+                               <!--v-on:click="deleteEntry(person.id, index)">-->
+                                <!--Delete-->
+                            <!--</a>-->
 
-                        </td>
+                        <!--</td>-->
                     </tr>
                     </tbody>
                 </table>
@@ -60,38 +60,19 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                people: []
+
+     export default {
+          data(){
+          return {people:[]}
+        },
+        mounted(){
+                window.axios.get('/people')
+                    .then(response => this.people=response.data);
             }
-        },
-        mounted() {
-            const app = this;
-            window.axios.get('/people')
-                .then(response => this.people = respons.data.people)
-                .catch(function (resp) {
-                    console.log(resp);
-                    alert("Could not load people");
-                });
-        },
-        methods: {
-            deleteEntry(id, index) {
-                if (confirm("Do you really want to delete it?")) {
-                    const app = this;
-                    window.axios.delete('/api/v1/people/' + id)
-                        .then(function (resp) {
-                            app.people.splice(index, 1);
-                        })
-                        .catch(function (resp) {
-                            alert("Could not delete person");
-                        });
-                }
-            }
-        },
-        created(){axios.get('/people')
-            .then(response => this.people=respons.data);
-        }
+                    // .catch(function (error) {
+                    //     console.log(error);
+                    // });
+
     }
 
 </script>

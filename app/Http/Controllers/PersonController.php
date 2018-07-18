@@ -10,16 +10,21 @@ class PersonController extends Controller
 {
 
     public function index()
-    {       return view('people.index',compact('people'));
+    {
 
 
-//        $people = Person::all();
+            $people = Person::all();
+            return view('people.index',compact('people'));
 //
 //        return response()->json([
 //            'people' => $people
 //        ]);
+//        return Person::all();
 
-//     return Person::all();
+    }
+    public function getPeople()
+    {
+        return Person::all();
     }
 
 

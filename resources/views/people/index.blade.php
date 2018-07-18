@@ -1,10 +1,11 @@
 @extends ('layouts.master')
 
 @section ('content')
-    <div id="app">
+    <div id="app" >
         <people></people>
     </div>
     <script src="{{asset('js/app.js')}}"></script>
+    {{--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>--}}
 
 @endsection
 

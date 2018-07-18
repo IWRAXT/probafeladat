@@ -21,9 +21,9 @@ Route::get('/vue', function () {
     return view('gyakVUE');
 });
 
-Route::resource('/people/index', 'PersonController');
+Route::get('/people', 'PersonController@getPeople');
 
-//Route::get('/people/index','PersonController@index');
+Route::get('/people/index','PersonController@index');
 
 
 Route::post('/people','PersonController@store');
