@@ -22,6 +22,8 @@ Route::get('/vue', function () {
 });
 
 Route::get('/people', 'PersonController@getPeople');
+Route::get('/getDirects/{id}','PersonController@getDirects');
+
 
 Route::get('/people/index','PersonController@index');
 

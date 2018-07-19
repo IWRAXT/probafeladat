@@ -27,6 +27,11 @@ class PersonController extends Controller
         return Person::all();
     }
 
+    public function getDirects($id)
+    {
+        return Person::find($id)->printSubalterns();
+    }
+
 
     public function create(Request $request)
     {
@@ -70,13 +75,9 @@ class PersonController extends Controller
 
     public function destroy($id)
     {
-        if(count(Person::find($id)->subalterns) === 0){
 
-            Person::find($id)->delete();
-            return redirect('/people/index')->with('success','Person deleted');
-        }else {
-            return redirect('/people/index')->with('success','Olyan személy, aki alatt vannak személyek, nem törölhető.');
-        }
+                Person::find($id)->delete();
+                return Person::all();
 
     }
 }
