@@ -30,17 +30,19 @@
                             </button>
 
 
-                            <button id="show-modal" @click="showModal = true" v-model="name=person.name, id=person.id" class="edit-modal btn btn-outline-secondary">Directs</button>
+                            <button id="show-modal" @click="person.showModal = true"
+                                    class="edit-modal btn btn-outline-secondary">Directs
+                            </button>
 
-                            <modal v-if="showModal" @close="showModal = false">
 
-                                <h3 slot="header">{{name}} beosztottjai:</h3>
+                            <modal v-if="person.showModal" @close="person.showModal = false">
+
+                                <h3 slot="header">{{person.name}} beosztottjai:</h3>
                                 <p slot="body">
-                                    <directsList :id="id" :name="name"></directsList>
+                                    <directsList :id="person.id" :name="person.name"></directsList>
                                 </p>
 
                             </modal>
-
 
                         </td>
                     </tr>
@@ -48,7 +50,7 @@
                 </table>
             </div>
         </div>
-        </div>
+    </div>
 
 
 </template>
@@ -57,52 +59,57 @@
     // import Directs from 'Directs';
     // import DirectsList from 'DirectsList';
 
-    import axios from 'axios';
 
-     export default {
-          data(){
-          return {
-              people:[],
-              showModal: false,
-              name:'',
-              id:''
-          }
-          },
+    export default {
+        data() {
+            return {
+                people: []
+            }
+        },
 
-          mounted(){
-                axios.get('/people')
-                    .then(response => this.people=response.data)
-
-                    .catch(function (error) {
-                        alert("Hiba történt az oldal betöltése során!");
-                        console.log(error);
-                    });
-          },
-          methods: {
+        mounted() {
+            axios.get('/people')
+                .then(response =>  {
+                    let people = response.data
+                    people.map(person => {
+                        person.showModal = false
+                        return person
+                    })
+                    this.people = people
+                })
 
 
-             deletePerson: function(person) {
 
-                     let conf = confirm("Do you ready want to delete person?");
-                     if (conf === true) {
-
-                         axios.post('/people/' + person.id)
-                             .then(response => this.people=response.data)
-                             .catch(function (error) {
-                                 alert("Nem sikerült törölni!");
-                                 console.log(error);
-
-                         });
-
-                     }
-
-             },
+                .catch(function (error) {
+                    alert("Hiba történt az oldal betöltése során!");
+                    console.log(error);
+                });
+        },
+        methods: {
 
 
-          }
+            deletePerson: function (person) {
+
+                let conf = confirm("Do you ready want to delete person?");
+                if (conf === true) {
+
+                    axios.post('/people/' + person.id)
+                        .then(response => this.people = response.data)
+                        .catch(function (error) {
+                            alert("Nem sikerült törölni!");
+                            console.log(error);
+
+                        });
+
+                }
+
+            },
 
 
-     }
+        }
+
+
+    }
 
 </script>
 <style scoped></style>

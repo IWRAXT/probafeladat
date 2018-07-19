@@ -5,11 +5,11 @@
 </template>
 
 <script>
-   // import Directs from 'Directs';
+    // import Directs from 'Directs';
     export default {
         name: "DirectsList",
         props: {
-            id: Object,
+            id: Number,
             name: String,
         },
         data() {
@@ -18,10 +18,8 @@
             };
         },
         mounted() {
-            window.axios.get('/getDirects/' + id)
-                .then(function (response) {
-                    this.directs = response.data;
-                })
+            axios.get('/getDirects/' + this.id)
+                .then(response => this.directs = response.data)
                 .catch(function (error) {
                     alert("ERRRORRR!!!!");
                     console.log(error);
