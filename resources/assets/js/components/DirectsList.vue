@@ -1,6 +1,6 @@
 <template>
     <div>
-        <directs :name="name" :directs="directs"/>
+        <directs :name="name" :directs="directs"></directs>
     </div>
 </template>
 
@@ -18,7 +18,7 @@
             };
         },
         mounted() {
-            axios.get('/getDirects/' + id)
+            window.axios.get('/getDirects/' + id)
                 .then(function (response) {
                     this.directs = response.data;
                 })

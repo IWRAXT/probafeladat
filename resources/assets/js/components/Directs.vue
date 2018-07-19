@@ -3,7 +3,7 @@
         <p>{{ name }}</p>
         <ul v-show="directs.length > 0">
             <li v-for="(index, value) in directs">
-                <directs :name="index" :directs="value"/>
+                <directs :name="index" :directs="value"></directs>
             </li>
         </ul>
     </div>
