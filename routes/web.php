@@ -14,13 +14,6 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/vue', function () {
-    return view('gyakVUE');
-});
-
 Route::get('/people', 'PersonController@getPeople');
 Route::get('/getDirects/{id}','PersonController@getDirects');
 

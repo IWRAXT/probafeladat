@@ -14,9 +14,10 @@ class CreatePeopleTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->date('born');
+            $table->string('image')->default('default.jpg');
 
 
-            $table->integer('principal_id')->nullable();;
+            $table->integer('principal_id')->nullable();
             $table->timestamps();
         });
     }

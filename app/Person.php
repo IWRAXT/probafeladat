@@ -9,30 +9,15 @@ class Person extends Model
     protected $fillable=[
         'name',
         'email',
-        'born'
+        'born',
+        'image'
     ];
 
-//    public function principal(){
-//        return $this->hasOne(Person::class,'id','principal_id');
-//
-//    }
 
     public function subalterns(){
         return $this->hasMany(Person::class, 'principal_id','id');
     }
-//
-//    public function printSubalterns($array){
-//        $i=0;
-//
-//            while($i<count($array)){
-//                echo $array[$i]->name;
-//                $array[$i]->printSubalterns($array[$i]->subalterns);
-//                $i++;
-//
-//            }
-//
-//
-//    }
+
     public function printSubalterns()
     {
         $subalterns = $this->subalterns;

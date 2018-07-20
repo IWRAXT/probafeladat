@@ -5,7 +5,6 @@
 </template>
 
 <script>
-    // import Directs from 'Directs';
     export default {
         name: "DirectsList",
         props: {
@@ -21,7 +20,7 @@
             axios.get('/getDirects/' + this.id)
                 .then(response => this.directs = response.data)
                 .catch(function (error) {
-                    alert("ERRRORRR!!!!");
+                    alert("Hiba történt a beosztottak kiiratásában!");
                     console.log(error);
                 });
         }

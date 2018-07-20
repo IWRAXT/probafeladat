@@ -21,8 +21,9 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleFormControlFile1">Profilkép hozzáadás</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1" >
+            <label for="file">Profilkép hozzáadás</label>
+            <input type="file" class="form-control-file" id="file"  name="file">
+           
         </div>
 
 
@@ -38,8 +39,5 @@
 
         @include ('layouts.errors')
     </form>
-
-
-
 
 @endsection
