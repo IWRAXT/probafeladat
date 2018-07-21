@@ -110,7 +110,11 @@ class PersonController extends Controller
 
     public function destroy($id)
     {
-        Person::find($id)->delete();
+        $person=Person::find($id);
+        $img_path='./images/'.$person->image;
+        File::delete($img_path);
+        $person->delete();
+
       //  $img=Person::find($id)->images;
 
       //  Storage::delete('/images'.$img);
