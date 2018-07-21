@@ -3,8 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Person;
+
+use Intervention\Image\Facades\Image;
+use Validator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
+use Storage;
+use File;
+
+
+
+
 
 //use Collective\Html\FormFacade;
 
@@ -42,10 +50,11 @@ class PersonController extends Controller
         $person->email = request('email');
         $person->born = request('born');
 
+
         if($request->hasFile('file')){
-            $file =  $request->file('file');
-            $person->image = $person->getKey();
-            $file->move('/images', $person->id);
+            $file =  $request->file('file');//->resize(500,500);
+            $person->image =$person->email.'.jpg';
+            $file->move(public_path('images'), $person->image);
         }
 
 
@@ -63,6 +72,7 @@ class PersonController extends Controller
 
     public function edit($id)
     {
+
         $person = Person::find($id);
         return view('people.edit', compact('person'));
     }
@@ -71,12 +81,27 @@ class PersonController extends Controller
     {
         $person = Person::find($id);
         $person->update($request->all());
+        if($request->hasFile('file')){
+
+            $file =  $request->file('file');//->resize(500,500);
+            $person->image =$person->email.'.jpg';
+            $file->move(public_path('images'), $person->image);
+
+        }
         return redirect('/people/index')->with('success', 'Person Updated');
     }
 
     public function destroy($id)
     {
         Person::find($id)->delete();
+
         return Person::all();
+
+//        $image_path = '/images/'.Person::find($id)->email.'jpg';
+//        if(File::exists($image_path)) {
+//            File::delete($image_path);
+//        }
     }
+
+
 }

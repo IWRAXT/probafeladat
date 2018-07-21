@@ -4,7 +4,7 @@
 @section ('content')
     <h1>Új alkalmazott rögzítése</h1>
 
-    <form method="POST" action="/people">
+    <form method="POST" action="/people" enctype="multipart/form-data">
         {{csrf_field()}}
 
         <div class="form-group">

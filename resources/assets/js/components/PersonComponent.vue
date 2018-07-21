@@ -6,7 +6,7 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>#</th>
                         <th width="150">Image</th>
                         <th>Name</th>
                         <th>Email</th>
@@ -17,7 +17,7 @@
                     <tbody>
                     <tr v-for="person in people">
                         <td>{{person.id}}</td>
-                        <td><img src="/images/default.jpg"></td>
+                        <td><img :src="'/images/'+person.image"></td>
                         <td>{{ person.name }}</td>
                         <td>{{ person.email }}</td>
                         <td>{{ person.born }}</td>
@@ -39,9 +39,7 @@
 
                             <a :href="'/people/'+person.id+'/edit'" class="btn btn-xs btn-secondary">Edit</a>
 
-                            <button class="edit-modal btn btn-danger" @click.prevent="deletePerson(person)">
-                                <span class="glyphicon glyphicon-trash"></span> Delete
-                            </button>
+                            <button class="edit-modal btn btn-danger" @click.prevent="deletePerson(person)">Delete</button>
 
                         </td>
                     </tr>
@@ -88,7 +86,7 @@
 
             deletePerson: function (person) {
 
-                let conf = confirm("Do you ready want to delete person?");
+                let conf = confirm("Tényleg törli a dolgozót?");
                 if (conf === true) {
 
                     axios.post('/people/' + person.id)
@@ -99,6 +97,7 @@
 
                         })
                     ;
+
 
                 }
 
