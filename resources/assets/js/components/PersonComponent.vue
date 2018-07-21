@@ -91,11 +91,16 @@
 
                     axios.post('/people/' + person.id)
                         .then(response => this.people = response.data)
+                       //  then(function () {
+                       //      this.people=this.people.splice(person.id,1);}
+
+
                         .catch(function (error) {
                             alert("Nem sikerült törölni!");
                             console.log(error);
 
-                        })
+                        }
+                       )
                     ;
 
 
@@ -115,8 +120,5 @@
         float:left;
         border-radius:50%;
         margin-right:25px;
-
-
-
     }
 </style>
