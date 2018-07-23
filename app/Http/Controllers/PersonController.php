@@ -5,19 +5,12 @@ namespace App\Http\Controllers;
 use App\Person;
 
 use File;
+use Intervention\Image\Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Validator;
 use Illuminate\Http\Request;
 
-
-
-
-
-
-
-//use Collective\Html\FormFacade;
 
 class PersonController extends Controller
 {
@@ -47,6 +40,9 @@ class PersonController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'file' => 'mimes:jpeg',
+        ]);
         $person = new Person();
         $person->name = request('name');
 
@@ -56,23 +52,17 @@ class PersonController extends Controller
 
         $person->born = request('born');
 
-
         if($request->hasFile('file')){
-            $file =  $request->file('file');//->resize(500,500);
+            $file =  $request->file('file');
             $person->image =$person->email.'.jpg';
+            //$img = Image::make('./images/'.$person->image);
+            //$img->resize(500, 500);
             $file->move(public_path('images'), $person->image);
         }
-
 
         $person->principal_id = request('principal_id');
         $person->save();
        return redirect('/people/index')->with('success', 'Person Saved');
-    }
-
-
-    public function show($id)
-    {
-        //laravel
     }
 
 
@@ -85,6 +75,9 @@ class PersonController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'file' => 'mimes:jpeg',
+        ]);
         $person = Person::find($id);
         $person->name = request('name');
 
@@ -94,16 +87,31 @@ class PersonController extends Controller
                 && request('email')!==$person->email){
                      return back()->with('success','Már létezik ez az emailcím az adatbázisban');
         }
-        else{$person->email = request('email');}
+        else {
+            $person->email = request('email');
+            rename(public_path('./images/'.$person->image), './images/'.$person->email.'.jpg');
+            $person->image =$person->email.'.jpg';
+        }
 
         $person->born = request('born');
 
         if($request->hasFile('file')){
 
-            $file =  $request->file('file');//->resize(500,500);
+            $file =  $request->file('file');
             $person->image =$person->email.'.jpg';
-            $file->move(public_path('images'), $person->image);
+           // $img = Image::make('./images/'.$person->image);
+            //$img->resize(500, 500);
+            $file->move(public_path('./images/'), $person->image);
         }
+
+
+        if (request('delete')=='true'){
+            $img_path='./images/'.$person->image;
+            File::delete($img_path);
+            $person->image='default.jpg';
+
+        }
+
         $person->save();
         return redirect('/people/index')->with('success', 'Dolgozó adatai frissítve');
     }
@@ -112,13 +120,9 @@ class PersonController extends Controller
     {
         $person=Person::find($id);
         $img_path='./images/'.$person->image;
+
         File::delete($img_path);
         $person->delete();
-
-      //  $img=Person::find($id)->images;
-
-      //  Storage::delete('/images'.$img);
-
         return Person::all();
 
     }

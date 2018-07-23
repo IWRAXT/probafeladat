@@ -1,6 +1,9 @@
 <template>
     <div>
-        <directs :name="name" :directs="directs"></directs>
+        <p v-if="directs!=0">
+            <directs :name="name" :directs="directs"></directs>
+        </p>
+        <h5 v-else>Nincs beosztottja!</h5>
     </div>
 </template>
 
